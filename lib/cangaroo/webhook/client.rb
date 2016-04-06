@@ -12,7 +12,7 @@ module Cangaroo
         @path = path
       end
 
-      def post(payload, request_id, parameters)
+      def post(payload, request_id, parameters, translation = nil)
         request_body = body(payload, request_id, parameters).to_json
 
         request_options = {
@@ -30,6 +30,14 @@ module Cangaroo
         end
 
         req = self.class.post(url, request_options)
+
+        if translation.present?
+          Cangaroo::Attempt.create!(
+            translation: translation,
+            response_code: req.response.code,
+            response: (req.parsed_response['summary'] rescue req.response)
+          )
+        end
 
         if req.response.code == '200'
           req.parsed_response
