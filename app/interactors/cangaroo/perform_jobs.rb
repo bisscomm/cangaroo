@@ -11,7 +11,7 @@ module Cangaroo
     private
 
     def data
-      @data ||= JSON.parse(context.json_body)
+      @data ||= context.json_body
     end
 
     def enqueue_jobs(type, payload)
