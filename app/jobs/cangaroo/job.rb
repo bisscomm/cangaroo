@@ -38,7 +38,7 @@ module Cangaroo
 
       PerformFlow.call(
         source_connection: destination_connection,
-        json_body: response.to_json,
+        json_body: response,
         jobs: Rails.configuration.cangaroo.jobs
       )
     end

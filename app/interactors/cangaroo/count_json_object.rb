@@ -17,7 +17,7 @@ module Cangaroo
     private
 
     def prepare_context
-      context.data = JSON.parse(context.json_body)
+      context.data = context.json_body
     end
   end
 end
