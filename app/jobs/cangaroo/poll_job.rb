@@ -30,7 +30,8 @@ module Cangaroo
       command = HandleRequest.call(
         key: destination_connection.key,
         token: destination_connection.token,
-        json_body: response.to_json,
+        # TODO: Follow discussion about this : https://github.com/nebulab/cangaroo/pull/23#issuecomment-215125471
+        json_body: response,
         jobs: Rails.configuration.cangaroo.jobs
       )
 
